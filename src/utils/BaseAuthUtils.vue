@@ -1,3 +1,11 @@
+<script setup>
+import { defineEmits } from 'vue';
+const emit = defineEmits(['eventRegisterOrLogin'])
+
+const eventRegisterOrLogin = ()=>{
+    emit('eventRegisterOrLogin')
+}
+</script>
 <template>
     <section class="w-screen h-screen bg-slate-100 flex justify-center items-center">
         <div class="w-full mx-auto flex px-2 z-10">
@@ -7,7 +15,7 @@
                     <div class="header-login mb-4">
                         <img src="../assets/images/icon-page.svg" alt="Logo da Empresa Cbfood" class="mb-3 w-20">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bem vindo de volta</h5>
-                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Não tem uma conta? <a href="#" class="text-orange-700">Inscreva-se .</a> </p>
+                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Não tem uma conta? <a href="#" @click.prevent="eventRegisterOrLogin" class="text-orange-700">Inscreva-se .</a> </p>
                     </div>
                     <slot name="content"></slot>
                 </div>

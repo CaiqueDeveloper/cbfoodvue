@@ -52,13 +52,16 @@ export default () => {
         })
     
     }
-
+    const register = () =>{
+        router.push('/requestFreeYourDemo')
+    }
 
     return {
         actionLogin,
         showAlert,
         title,
         message,
-        colorName
+        colorName,
+        register
     }
 }

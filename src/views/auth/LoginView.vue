@@ -5,12 +5,12 @@ import BaseLoadingUtils from '@/utils/BaseLoadingUtils.vue';
 import BaseAuthUtils from '@/utils/BaseAuthUtils.vue';
 import AuthComposable from '@/composable/auth.composable'
 
-const {actionLogin,showAlert,title,message,colorName} = AuthComposable();
+const {actionLogin,showAlert,title,message,colorName, register} = AuthComposable();
 
 </script>
 
 <template>
-    <BaseAuthUtils>
+    <BaseAuthUtils @eventRegisterOrLogin="register">
        <template v-slot:content>
             <div class="content-login">
                 <BaseLoadingUtils v-if="showLoading" />
