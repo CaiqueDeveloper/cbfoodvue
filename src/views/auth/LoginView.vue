@@ -3,7 +3,7 @@ import BaseInputUtils from '@/utils/BaseInputUtils.vue';
 import BaseAlertUtils from '@/utils/BaseAlertUtils.vue';
 import BaseLoadingUtils from '@/utils/BaseLoadingUtils.vue';
 import BaseAuthUtils from '@/utils/BaseAuthUtils.vue';
-import AuthComposable from '@/composable/auth.composable'
+import AuthComposable from '@/composable/auth/auth-login.composable'
 
 const {actionLogin,showAlert,title,message,colorName, register} = AuthComposable();
 
