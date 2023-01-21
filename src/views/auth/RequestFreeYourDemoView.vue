@@ -5,7 +5,8 @@ import BaseLoadingUtils from '@/utils/BaseLoadingUtils.vue';
 import BaseAuthUtils from '@/utils/BaseAuthUtils.vue';
 import AuthComposable from '@/composable/auth/auth-requestFreeYourDemo.composable.js'
 
-const { actionLogin, showAlert, title, message, colorName, login,showLoading,showFormRegisterUser, actionRegisterUser} = AuthComposable();
+
+const {showAlert, title, message, colorName, login,showLoading,showFormRegisterUser, actionRegisterUser,actionRegisterCompany} = AuthComposable();
 
 </script>
 
@@ -25,14 +26,16 @@ const { actionLogin, showAlert, title, message, colorName, login,showLoading,sho
                         {{ message }}
                     </template>
                 </BaseAlertUtils>
+                <input type="tel" />
                 <form @submit.prevent="actionRegisterCompany" id="form_register_company">
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <BaseInputUtils label="Razão social" name="social_reason" type="text" />
-                        <BaseInputUtils label="CNPJ" name="cnpj" type="text" />
+                        <BaseInputUtils label="CNPJ" name="cnpj" type="text" v-mask="['###.###.###-##', '##.###.###/####-##']" />
                     </div>
+                   
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <BaseInputUtils label="E-mail" name="email" type="text" />
-                        <BaseInputUtils label="Nª Telefone" name="number_phone" type="text" />
+                        <BaseInputUtils label="Nª Telefone" name="number_phone" type="text" v-mask="['(##) ####-####', '(##) #####-####']" />
                     </div>
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <BaseInputUtils label="Estado" name="state_registration" type="text" />
@@ -67,8 +70,8 @@ const { actionLogin, showAlert, title, message, colorName, login,showLoading,sho
                         <BaseInputUtils label="E-mail" name="email" type="text" />
                     </div>
                     <div class="grid md:grid-cols-2 md:gap-6">
-                        <BaseInputUtils label="Nª Telefone" name="number_phone" type="text" />
-                        <BaseInputUtils label="Telefone alternativo" name="number_phone_alternative" type="text" />
+                        <BaseInputUtils label="Nª Telefone" name="number_phone" type="text" v-mask="['(##) ####-####', '(##) #####-####']"  />
+                        <BaseInputUtils label="Telefone alternativo" name="number_phone_alternative" type="text"  v-mask="['(##) ####-####', '(##) #####-####']" />
                     </div>
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <BaseInputUtils label="Senha" name="password" type="password" />
