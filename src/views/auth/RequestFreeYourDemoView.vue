@@ -25,7 +25,7 @@ const { actionLogin, showAlert, title, message, colorName, login,showLoading,sho
                         {{ message }}
                     </template>
                 </BaseAlertUtils>
-                <form @submit.prevent="actionLogin" id="form">
+                <form @submit.prevent="actionRegisterCompany" id="form_register_company">
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <BaseInputUtils label="Razão social" name="social_reason" type="text" />
                         <BaseInputUtils label="CNPJ" name="cnpj" type="text" />

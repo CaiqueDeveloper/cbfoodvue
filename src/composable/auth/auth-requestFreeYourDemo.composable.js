@@ -16,9 +16,9 @@ export default () => {
     const colorName = ref('')
     const showFormRegisterUser = ref(false)
 
-    const actionLogin = () => {
+    const actionRegisterCompany = () => {
 
-        const form = document.getElementById('form')
+        const form = document.getElementById('form_register_company')
         const data = new FormData(form)
     
         showLoading.value = true
@@ -90,7 +90,7 @@ export default () => {
     }
 
     return {
-        actionLogin,
+        actionRegisterCompany,
         showAlert,
         title,
         message,
