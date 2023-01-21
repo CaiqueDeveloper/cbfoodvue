@@ -62,6 +62,7 @@ export default () => {
         title,
         message,
         colorName,
-        register
+        register,
+        showLoading
     }
 }

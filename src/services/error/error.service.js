@@ -3,6 +3,7 @@ export default (error) =>{
     getError(error)
     
     function getError(error) {
+        
         switch (error.code) {
             case "ERR_NETWORK":
                 connectionError()
@@ -20,7 +21,7 @@ export default (error) =>{
     function connectionError() {
 
         let a = [{
-            title: 'Erro',
+            title: 'Erro!',
             message: 'Houve um erro ao tentarmos se conectar com a internet',
             colorName: 'red',
             showAlert: true
@@ -63,7 +64,7 @@ export default (error) =>{
        
 
        let a = [{
-        title: 'Erro',
+        title: 'Erro!',
         message: error.response.data.error,
         colorName: 'red',
         showAlert: false

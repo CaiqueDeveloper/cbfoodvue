@@ -5,7 +5,7 @@ import BaseLoadingUtils from '@/utils/BaseLoadingUtils.vue';
 import BaseAuthUtils from '@/utils/BaseAuthUtils.vue';
 import AuthComposable from '@/composable/auth/auth-login.composable'
 
-const {actionLogin,showAlert,title,message,colorName, register} = AuthComposable();
+const {actionLogin,showAlert,title,message,colorName, register,showLoading} = AuthComposable();
 
 </script>
 
