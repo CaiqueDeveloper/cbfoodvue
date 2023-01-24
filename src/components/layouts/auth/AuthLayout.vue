@@ -25,25 +25,23 @@ import BaseDarModeButtonUtils from "@/components/utils/BaseDarModeButtonUtils.vu
 <style scoped>
 section::before {
     content: '';
-    background-image: url('@/assets/images/undraw_online_groceries_a02y.svg');
+    background-image: url('../../../assets/images/undraw_online_groceries_a02y.svg');
     background-size: cover;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    /* border-top-left-radius: 100%;
-    border-bottom-left-radius: 10%; */
+    @apply  sm:w-96 w-56 sm:h-96 h-56 fixed top-2 left-0
    
 }
 
 section::after {
     content: '';
-    background-image: url('@/assets/images/undraw_appreciation_yy29.svg');
+    background-image: url('../../../assets/images/undraw_appreciation_yy29.svg');
     background-size: cover;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    /* border-top-left-radius: 100%;
-    border-bottom-left-radius: 10%; */
+    @apply  sm:w-96 w-56 sm:h-96 h-56 fixed -bottom-10 right-0
     
 }
 </style>
