@@ -1,23 +1,30 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Login from '@/views/auth/LoginView.vue'
+import RequestFreeYourDemo from '@/views/auth/RequestFreeYourDemoView.vue'
+import Dashboard from '@/views/dashboard/Dashboard.vue'
+import Products from '@/views/product/ProductsView.vue'
 
-const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
+
+const routes = [{
+    path: '/dashboard',
+    name: 'dashboard',
+    component: Dashboard,
+    meta: {layout: 'dashboard'}
+  },{
+    path: '/products',
+    name: 'products',
+    component: Products,
+    meta: {layout: 'dashboard'}
   },{
     path: '/login',
     name: 'login',
-    component: () => import('../views/auth/LoginView.vue')
+    component: Login,
+    meta: {layout: 'auth'}
   },{
     path: '/requestFreeYourDemo',
     name: 'requestFreeYourDemo',
-    component: () => import('../views/auth/RequestFreeYourDemoView.vue')
-  },{
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
+    component: RequestFreeYourDemo,
+    meta: {layout: 'auth'}
   }
 ]
 

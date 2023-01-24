@@ -29,7 +29,7 @@ export default () => {
             colorName.value = 'blue'
     
             setTimeout(()=>{
-                router.push('/')
+                router.push('/dashboard')
             },3000)
             
         }).catch((error) => {

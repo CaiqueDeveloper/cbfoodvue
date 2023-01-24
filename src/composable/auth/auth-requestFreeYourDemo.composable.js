@@ -70,7 +70,7 @@ export default () => {
             colorName.value = 'green'
             
             setTimeout(()=>{
-                router.push('/')
+                router.push('/dashboard')
             },3000)
 
         }).catch((error) => {
