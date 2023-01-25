@@ -1,8 +1,10 @@
 <script setup>
+
 import BaseInputUtils from '@/components/utils/BaseInputUtils.vue';
 import BaseAlertUtils from '@/components/utils/BaseAlertUtils.vue';
 import BaseLoadingUtils from '@/components/utils/BaseLoadingUtils.vue';
 import AuthComposable from '@/composable/auth/auth-login.composable'
+
 const { actionLogin, showAlert, title, message, colorName, register, showLoading } = AuthComposable();
 
 </script>
