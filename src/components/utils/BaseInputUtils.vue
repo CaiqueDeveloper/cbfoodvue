@@ -20,7 +20,6 @@ let props = defineProps({
   }
 })
 
-
 </script>
 <template>
     <div class="mb-6">

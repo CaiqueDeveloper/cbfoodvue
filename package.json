@@ -17,7 +17,8 @@
     "vue-the-mask": "^0.11.1",
     "vue3-apexcharts": "^1.4.1",
     "vue3-perfect-scrollbar": "^1.6.1",
-    "vuex": "^4.0.0"
+    "vuex": "^4.0.0",
+    "vuex-composition-helpers": "^2.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
