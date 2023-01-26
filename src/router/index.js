@@ -6,7 +6,7 @@ import Products from '@/views/product/ProductsView.vue'
 
 
 const routes = [{
-    path: '/dashboard',
+    path: '/admin/dashboard',
     name: 'dashboard',
     component: Dashboard,
     meta: {layout: 'dashboard'}

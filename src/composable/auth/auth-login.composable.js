@@ -21,15 +21,15 @@ export default () => {
         const data = new FormData(form)
     
         showLoading.value = true
-        store.dispatch('auth/login', data).then(() => {
-    
+        store.dispatch('auth/login', data).then((redirect) => {
+            
             showAlert.value = true
             title.value = 'Sucesso!'
             message.value = 'Login efetuado com sucesso iremos lhe redirecionar, aguarde.'
             colorName.value = 'blue'
     
             setTimeout(()=>{
-                router.push('/dashboard')
+                router.push(redirect)
             },3000)
             
         }).catch((error) => {

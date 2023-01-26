@@ -22,7 +22,7 @@ let showPreLoading = computed(() => store.getters['user/getShowLoading'])
     <div class="flex bg-packed font-lexend dark:bg-gray-900">
         <div id="sidebar-scroll"
             class="flex-sidebar lg:flex-auto w-sidebar lg:block hidden bg-white dark:bg-gray-800 border-r-2 dark:border-gray-700 h-screen lg:z-0 z-40 overflow-auto lg:relative fixed">
-            <Sidebar />
+            <Sidebar :menu="user.drawMenuBasedOnProfilePermission" :company="user.company" :companies="user.companies"/>
         </div>
         <div class="flex-auto w-full overflow-auto h-screen" id="body-scroll">
             <Header :user="user"/>

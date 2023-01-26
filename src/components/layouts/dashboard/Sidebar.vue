@@ -1,14 +1,25 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 import MenuAccordion from "./MenuAccordion.vue";
-import { defineProps } from 'vue';
+
 
 
 
 let props = defineProps({
-  user: Object,
-  default: () => { }
+  menu:{
+    type:Object,
+    default: ()=>{}
+  },
+  company:{
+    type:Object,
+    default: ()=>{}
+  },
+  companies:{
+    type:Object,
+    default: ()=>{}
+  }
 })
+
 const sidebarToggle = () => {
   document.querySelector(".flex-sidebar").classList.add("hidden");
 }
@@ -18,14 +29,7 @@ const sidebarToggle = () => {
   <!-- sidebar -->
   <nav class="sidebar bg-white dark:bg-gray-800">
     <!-- sidebar head -->
-    <div class="sidebar-head p-4">
-      <router-link to="/" exact>
-        <h2 class="text-2xl font-normal text-gray-800 dark:text-gray-500" translate="no">
-          Cbfood<span class="text-primary">.</span>
-          <span class="bg-gray-700 absolute mt-2 dark:block hidden rounded-md py-1 px-2 text-xs text-gray-200">Dark
-            mode</span>
-        </h2>
-      </router-link>
+    <div class="sidebar-head p-4 mt-4">
       <button class="lg:hidden block float-right -mt-7" @click="sidebarToggle">
         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="25px" height="25px"
           preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32">
@@ -34,28 +38,32 @@ const sidebarToggle = () => {
         </svg>
       </button>
     </div>
-    <!-- sidebar list -->
+   
     <div class="sidebar-list p-4 mt-4">
+      
+      <img class="rounded-full w-36 h-36 mx-auto mb-4" src="@/assets/logo.png" alt="image description">
+
+      <select id="companies"
+        class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500">
+        <option v-for="c in companies" :key="c.id" :value="c.id" >{{c.social_reason}}</option>
+      </select>
+       <!-- sidebar list -->
       <div class="wrap-item mt-4 dark:text-gray-500">
-        <div class="item">
-          <router-link to="/" exact
-            class="w-full flex text-left rounded-md box-border p-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <span class="mr-3 text-xl">
-              <Icon icon="bxs:dashboard" />
-            </span>
-            <span class="w-full"> Dashboard </span>
-          </router-link>
-        </div>
         <div class="item mt-3">
-          <menu-accordion>
+          <menu-accordion v-for="menu in props.menu" :key="menu.id">
             <template v-slot:icon>
               <Icon icon="bi:layout-wtf" />
             </template>
-            <template v-slot:title> Layouts </template>
+            <template v-slot:title> {{ menu.menu }} </template>
             <template v-slot:content>
-              <button class="w-full text-left rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-                Coming Soon
-              </button>
+              <div v-for="(subMenu) in menu.subMenu" :key="subMenu.name">
+                <router-link :to="{'path': subMenu.url}">
+                  <button class="w-full text-left rounded-md p-3 hover:bg-gray-300 dark:hover:bg-white">
+                    {{subMenu.name}}
+                  </button>
+                </router-link>
+              </div>
+      
             </template>
           </menu-accordion>
         </div>
@@ -64,6 +72,3 @@ const sidebarToggle = () => {
     </div>
   </nav>
 </template>
-<style>
-.active {}
-</style>

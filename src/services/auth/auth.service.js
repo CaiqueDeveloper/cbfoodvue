@@ -9,7 +9,7 @@ class AuthServices {
                 if (response.data.access_token) {
                     localStorage.setItem('access_token', JSON.stringify(response.data));
                 }
-                return response.data;
+                return response.data.url_redirect;
             });
     }
     logout(data) {

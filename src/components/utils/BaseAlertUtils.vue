@@ -1,7 +1,7 @@
 <script setup>
 import {defineProps} from 'vue';
 
-const props = defineProps({
+let props = defineProps({
     colorName: {
         type: String,
         default: 'slate'

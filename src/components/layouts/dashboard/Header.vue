@@ -3,7 +3,7 @@
 import HeaderComposable from '@/composable/layout/header.composable.js'
 import BaseDarModeButtonUtils from "@/components/utils/BaseDarModeButtonUtils.vue";
 import { Icon } from "@iconify/vue";
-import { defineProps } from 'vue';
+
 
 const { sidebarToggle, menuToggle, menuToggleBlur, menu } = HeaderComposable();
 
@@ -11,6 +11,7 @@ let props = defineProps({
   user: Object,
   default: () => { }
 })
+const emmit = defineEmits(['logout_'])
 
 </script>
 <template>
@@ -26,7 +27,7 @@ let props = defineProps({
               d="M2.75 12.25h10.5m-10.5-4h10.5m-10.5-4h10.5" />
           </svg>
         </button>
-        <h2 class="text-md text-indigo-800 ml-3 lg:block hidden px-5 p-2 rounded-md bg-indigo-200">
+        <h2 class="text-md text-indigo-800 ml-3 lg:block hidden px-5 p-2 rounded-md bg-indigo-200"  @click="logout_">
           Welcome back, {{ props.user.name }}
         </h2>
       </div>
@@ -70,8 +71,8 @@ let props = defineProps({
                 <a href="#" class="block py-2 px-4 hover:bg-primary hover:text-white">Github</a>
               </li>
             </ul>
-            <div class="py-1">
-              <a href="#"
+            <div class="py-1" >
+              <a href="#" 
                 class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white">Sign
                 out</a>
             </div>
