@@ -1,19 +1,65 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/auth/LoginView.vue'
 import RequestFreeYourDemo from '@/views/auth/RequestFreeYourDemoView.vue'
-import Dashboard from '@/views/dashboard/Dashboard.vue'
-import Products from '@/views/product/ProductsView.vue'
 
+function lazyLoad(view){
+  return() => import(`@/views/${view}.vue`)
+}
 
 const routes = [{
     path: '/admin/dashboard',
     name: 'dashboard',
-    component: Dashboard,
+    component: lazyLoad('dashboard/Dashboard'),
     meta: {layout: 'dashboard'}
   },{
-    path: '/products',
+    path: '/admin/company',
+    name: 'company',
+    component: lazyLoad('company/Company'),
+    meta: {layout: 'dashboard'}
+  },{
+    path: '/admin/permissions',
+    name: 'permissions',
+    component: lazyLoad('permission/Permission'),
+    meta: {layout: 'dashboard'}
+  },{
+    path: '/admin/users',
+    name: 'users',
+    component: lazyLoad('user/User'),
+    meta: {layout: 'dashboard'}
+  },{
+    path: '/admin/systemUsabilityControl',
+    name: 'systemUsabilityControl',
+    component: lazyLoad('systemUsabilityControl/SystemUsabilityControl'),
+    meta: {layout: 'dashboard'}
+  },{
+    path: '/admin/import',
+    name: 'import',
+    component: lazyLoad('import/ImportReport'),
+    meta: {layout: 'dashboard'}
+  },{
+    path: '/admin/deliveries',
+    name: 'deliveries',
+    component: lazyLoad('deliveries/Deliveries'),
+    meta: {layout: 'dashboard'}
+  },{
+    path: '/admin/orders',
+    name: 'orders',
+    component: lazyLoad('orders/Orders'),
+    meta: {layout: 'dashboard'}
+  },{
+    path: '/admin/category',
+    name: 'category',
+    component: lazyLoad('category/Category'),
+    meta: {layout: 'dashboard'}
+  },{
+    path: '/admin/products',
     name: 'products',
-    component: Products,
+    component: lazyLoad('product/Products'),
+    meta: {layout: 'dashboard'}
+  },{
+    path: '/admin/additional',
+    name: 'additional',
+    component: lazyLoad('additional/Additional'),
     meta: {layout: 'dashboard'}
   },{
     path: '/login',
