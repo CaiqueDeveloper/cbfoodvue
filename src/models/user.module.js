@@ -1,4 +1,5 @@
 import UserService from "@/services/user/user.service"
+import AuthService from "@/services/auth/auth.service";
 export const user = {
     namespaced: true,
 
@@ -26,6 +27,11 @@ export const user = {
                 commit('setShowLoading', true)
     
                 return Promise.resolve(user.data)
+            }).catch((error)=>{
+                
+                if(error.response.data.message == 'Unauthenticated.'){
+                    AuthService.logout()
+                }
             })
         }
     },
