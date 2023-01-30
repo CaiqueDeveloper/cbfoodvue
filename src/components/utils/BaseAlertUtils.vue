@@ -1,16 +1,23 @@
 <script setup>
-import {defineProps} from 'vue';
 
 let props = defineProps({
-    colorName: {
+    type: {
+        type: String,
+        default: ''
+    },
+    message: {
+        type: String,
+        default: ''
+    },
+    class: {
         type: String,
         default: 'slate'
-    }
+    },
 })
 
 </script>
 <template>
-<div :class="`flex p-4 mb-4 text-sm text-${props.colorName}-700 bg-${props.colorName}-100 rounded-lg dark:bg-${props.colorName}-200 dark:text-${props.colorName}-800`"
+<div :class="class"
         role="alert">
         <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor"
             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +27,15 @@ let props = defineProps({
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            <span class="font-medium"><slot name="typeAlert"></slot></span> <slot name="messageAlert"></slot>
+            <span class="font-medium">{{type}}</span> {{message}}
         </div>
     </div>
 </template>
+<style>
+.success{
+    @apply flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800
+}
+.error{
+    @apply flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800
+}
+</style>

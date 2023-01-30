@@ -6,7 +6,7 @@ import BaseLoadingUtils from '@/components/utils/BaseLoadingUtils.vue';
 import AuthComposable from '@/composable/auth/auth-requestFreeYourDemo.composable.js'
 
 
-const {showAlert, title, message, colorName, login,showLoading,showFormRegisterUser, actionRegisterUser,actionRegisterCompany} = AuthComposable();
+const {showAlert, title, message, classError, login,showLoading,showFormRegisterUser, actionRegisterUser,actionRegisterCompany} = AuthComposable();
 
 </script>
 
@@ -22,14 +22,9 @@ const {showAlert, title, message, colorName, login,showLoading,showFormRegisterU
             <p class="mb-3 font-normal text-gray-500 dark:text-gray-400"> </p>
         </div>
         <BaseLoadingUtils v-if="showLoading" />
-        <BaseAlertUtils v-show="showAlert" :colorName="colorName">
-            <template v-slot:typeAlert>
-                {{ title }}
-            </template>
-            <template v-slot:messageAlert>
-                {{ message }}
-            </template>
-        </BaseAlertUtils>
+        <BaseAlertUtils v-show="showAlert" :class="classError" :type="title" :message="message" />
+
+
         <form @submit.prevent="actionRegisterCompany" id="form_register_company">
             <div class="grid md:grid-cols-2 md:gap-6">
                 <BaseInputUtils label="Razão social" name="social_reason" type="text" />
@@ -60,14 +55,8 @@ const {showAlert, title, message, colorName, login,showLoading,showFormRegisterU
             <p class="mb-3 font-normal text-gray-500 dark:text-gray-400"> </p>
         </div>
         <BaseLoadingUtils v-if="showLoading" />
-        <BaseAlertUtils v-show="showAlert" :colorName="colorName">
-            <template v-slot:typeAlert>
-                {{ title }}
-            </template>
-            <template v-slot:messageAlert>
-                {{ message }}
-            </template>
-        </BaseAlertUtils>
+        <BaseAlertUtils v-show="showAlert" :class="classError" :type="title" :message="message" />
+
         <form @submit.prevent="actionRegisterUser" id="form_register_user">
             <div class="grid md:grid-cols-2 md:gap-6">
                 <BaseInputUtils label="Nome" name="name" type="text" />

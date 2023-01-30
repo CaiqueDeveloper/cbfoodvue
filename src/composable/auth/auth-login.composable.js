@@ -13,7 +13,7 @@ export default () => {
     const showLoading = ref(false)
     const title = ref('')
     const message = ref('')
-    const colorName = ref('')
+    const classError = ref('')
 
     const actionLogin = () => {
 
@@ -26,7 +26,7 @@ export default () => {
             showAlert.value = true
             title.value = 'Sucesso!'
             message.value = 'Login efetuado com sucesso iremos lhe redirecionar, aguarde.'
-            colorName.value = 'blue'
+            classError.value = 'success'
     
             setTimeout(()=>{
                 router.push(redirect)
@@ -35,11 +35,11 @@ export default () => {
         }).catch((error) => {
     
             let { emailAndOrPasswordInvalid } = ErrorServices(error)
-            const { title:titleError, message:messageError, colorName:colorNameError} = emailAndOrPasswordInvalid()[0]
+            const { title:titleError, message:messageError, classError:colorNameError} = emailAndOrPasswordInvalid()[0]
             
             title.value = titleError
             message.value = messageError
-            colorName.value = colorNameError
+            classError.value = 'error'
             if(messageError){
                 showAlert.value = true
             }else{
@@ -61,7 +61,7 @@ export default () => {
         showAlert,
         title,
         message,
-        colorName,
+        classError,
         register,
         showLoading
     }

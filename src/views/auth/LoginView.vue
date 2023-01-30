@@ -5,7 +5,7 @@ import BaseAlertUtils from '@/components/utils/BaseAlertUtils.vue';
 import BaseLoadingUtils from '@/components/utils/BaseLoadingUtils.vue';
 import AuthComposable from '@/composable/auth/auth-login.composable'
 
-const { actionLogin, showAlert, title, message, colorName, register, showLoading } = AuthComposable();
+const { actionLogin, showAlert, title, message, classError, register, showLoading } = AuthComposable();
 
 </script>
 <template>
@@ -20,14 +20,7 @@ const { actionLogin, showAlert, title, message, colorName, register, showLoading
     </div>
     <div class="content-login">
         <BaseLoadingUtils v-if="showLoading" />
-        <BaseAlertUtils v-show="showAlert" :colorName="colorName">
-            <template v-slot:typeAlert>
-                {{ title }}
-            </template>
-            <template v-slot:messageAlert>
-                {{ message }}
-            </template>
-        </BaseAlertUtils>
+        <BaseAlertUtils v-show="showAlert" :class="classError" :type="title" :message="message" />
         <form @submit.prevent="actionLogin" id="form">
             <BaseInputUtils label="E-mail" name="email" type="email" />
             <BaseInputUtils label="Senha" name="password" type="password" />
