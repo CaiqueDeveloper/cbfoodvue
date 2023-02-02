@@ -10,6 +10,7 @@ import {computed,ref} from 'vue'
 
 const store = useStore();
 store.dispatch('user/fetchGetUser')
+store.dispatch('category/fetchAll')
 
 let user = computed(() => store.getters['user/getUser'])
 let showPreLoading = computed(() => store.getters['user/getShowLoading'])
