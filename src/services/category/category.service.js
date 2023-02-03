@@ -8,7 +8,13 @@ class CategoryService {
         return axios.get(API_URL + 'getAllCategory', { headers: authHeader() });
     }
     create(data){
-      return  axios({method:'post', url:API_URL + 'storageCategory',headers: authHeader(), data:data})
+      return  axios({method:'POST', url:API_URL + 'storageCategory',headers: authHeader(), data:data})
+    }
+    delete(data){
+      return  axios({method:'DELETE', url:API_URL + 'deleteCategory',headers: authHeader(), data:{id:data}})
+    }
+    update(data){
+      return  axios({method:'PUT', url:API_URL + 'updateCategory',headers: authHeader(), data:data})
     }
 }
 

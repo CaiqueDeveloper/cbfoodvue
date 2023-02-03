@@ -2,6 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-.dataTables_length{
-    display: none !important;
-}

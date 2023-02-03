@@ -23,8 +23,7 @@ app.use(router, Icon)
 app.use(PerfectScrollbar)
 app.use(store)
 app.use(VueTheMask)
-app.use(VueApexCharts);
-
+app.use(VueApexCharts)
 app.component('auth-layout', AuthLayout)
 app.component('dashboard-layout', DashboardLayout)
 app.mount('#app')

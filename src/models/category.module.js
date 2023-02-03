@@ -19,7 +19,11 @@ export const category = {
         fetchAll({ commit }) {
             return CategoryService.getAll().then(
                 response => {
-                    commit('setCategories', response.data)
+                    if(Array.isArray(response.data.data) && response.data.data.length === 0){
+                        commit('setCategories', response.data.data)
+                    }else{
+                        commit('setCategories', response.data)
+                    }
                     commit('setShowLoading', true)
 
                     return Promise.resolve(response.data)
