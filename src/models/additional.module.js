@@ -8,7 +8,7 @@ export const additional = {
     }),
     mutations:{
         setAdditional(state, data){
-            state.categories = data
+            state.additionals = data
         },
         setShowLoading(state, data){
             state.ShowLoading = data

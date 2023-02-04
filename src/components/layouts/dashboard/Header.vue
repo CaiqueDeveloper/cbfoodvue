@@ -27,10 +27,10 @@ const emmit = defineEmits(['logout_'])
               d="M2.75 12.25h10.5m-10.5-4h10.5m-10.5-4h10.5" />
           </svg>
         </button>
-        <h2 class="text-md text-indigo-800 ml-3 lg:block hidden px-5 p-2 rounded-md bg-indigo-200"  @click="logout_">
+        <h2 class="text-md text-indigo-800 ml-3 lg:block hidden px-5 p-2 rounded-md bg-indigo-200 dark:bg-orange-600 dark:text-white"  @click="logout_">
           Welcome back, {{ props.user.name }}
         </h2>
-      </div>
+      </div> 
       <div class="mr-5 flex">
 
         <BaseDarModeButtonUtils />
@@ -68,12 +68,12 @@ const emmit = defineEmits(['logout_'])
             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSmallButton">
 
               <li>
-                <a href="#" class="block py-2 px-4 hover:bg-primary hover:text-white">Github</a>
+                <a href="#" class="block py-2 px-4 hover:bg-orange-700 hover:text-white">Github</a>
               </li>
             </ul>
             <div class="py-1" >
               <a href="#" 
-                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white">Sign
+                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200 hover:bg-orange-700 hover:text-white">Sign
                 out</a>
             </div>
           </div>
