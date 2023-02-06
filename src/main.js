@@ -28,7 +28,3 @@ app.component('auth-layout', AuthLayout)
 app.component('dashboard-layout', DashboardLayout)
 app.mount('#app')
 
-router.beforeEach((to, from, next) => {
-   // document.querySelector(".flex-sidebar").classList.add("hidden");
-    next();
-});

@@ -28,3 +28,12 @@ table tbody tr td {
 .paginate_button.current{
   @apply px-3 py-2 leading-tight text-orange-500 bg-white border border-orange-300 hover:bg-orange-100 hover:text-orange-700 dark:bg-orange-800 dark:border-orange-700 dark:text-white dark:hover:bg-orange-700 dark:hover:text-white
 }
+.dataTables_empty{
+  @apply text-center
+}
+input[type="search"]{
+  @apply outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500
+}
+.dataTables_filter {
+  @apply my-8
+}

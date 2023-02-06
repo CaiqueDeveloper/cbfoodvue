@@ -58,7 +58,7 @@ const sidebarToggle = () => {
             <template v-slot:content>
               <div v-for="(subMenu) in menu.subMenu" :key="subMenu.name">
                 <router-link :to="{'path': subMenu.url}">
-                  <button class="w-full text-left rounded-md p-3 hover:bg-gray-300 dark:hover:bg-white">
+                  <button class="w-full text-left rounded-md p-3 hover:bg-indigo-300  hover:text-indigo-800 dark:hover:bg-orange-600 dark:hover:text-white">
                     {{subMenu.name}}
                   </button>
                 </router-link>
