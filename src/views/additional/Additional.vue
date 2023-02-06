@@ -1,36 +1,47 @@
 <script setup>
 import AdditionalComposable from '@/composable/additional/additional.composable';
+import AdditionalIemComposable from '@/composable/additional/additionalItem/additionalItem.composable'
 import BaseAlertUtils from '@/components/utils/BaseAlertUtils.vue';
 import BaseInputUtils from '@/components/utils/BaseInputUtils.vue';
 import BaseLoadingUtils from '@/components/utils/BaseLoadingUtils.vue';
 import BaseButtonUtilsVue from '@/components/utils/BaseButtonUtils.vue';
+import BaseSelectUtils from "@/components/utils/BaseSelectUtils.vue"
 import Modal from '@/components/utils/BaseModalUtils.vue';
 import BaseDataTableUtils from '@/components/utils/BaseDataTableUtils.vue';
-
 const {
-  actionShowModalItemAdditional,
-  actionShowModalGroupAdditional,
-  showModalGroupAdditional,
-  closedModalGroupAdditional,
-  showModalAdditionalItem,
-  closedModalAdditionalItem,
-  showAlert,
-  showLoading,
-  title,
-  message,
-  classError,
-  additional,
-  additionals,
-  actionCreateNewGroupAdditional,
-  actionUpdateNewGroupAdditional,
-  columns,
-  options,
-  isUpdateGroupAdditional,
-  actionUpdateGroupAdditional,
+    actionShowModalGroupAdditional,
+    showModalGroupAdditional,
+    closedModalGroupAdditional,
+    closedModalAdditionalItem,
+    actionCreateNewGroupAdditional,
+    isUpdateGroupAdditional,
+    actionUpdateGroupAdditional,
+    showAlert,
+    showLoading,
+    title,
+    message,
+    classError,
+    additional,
+    additionals,
+    columns,
+    options,
+    isUpdateGroupAdditionalItem, 
+    item,
+    showModalAdditionalItem,
+    actionShowModalItemAdditional,
   } = AdditionalComposable();
+const {
+   showAlert:showAlertAdditionalItem,
+   showLoading:showLoadingAdditionalItem,
+   title:titleAdditionalItem,
+   message:messageAdditionalItem,
+   classError:classErrorAdditionalItem,
+   actionCreateNewItemAdditional,
+   actionUpdateItemAdditional
+  } = AdditionalIemComposable();
 </script>
-<template>
 
+<template>
   <div class="ml-5 mt-5 w-full">
     <h1 class="text-2xl text-gray-900 dark:text-gray-200 font-medium">
       Additional
@@ -107,12 +118,70 @@ const {
   <!-- Modal Create Itens Additional -->
   <Modal v-if="showModalAdditionalItem" @closedModal="closedModalAdditionalItem">
     <template v-slot:modalTitle>
-      <p v-if="!isUpdate">Create new additional item</p>
+      <p v-if="!isUpdateGroupAdditionalItem">Create new additional item</p>
       <p v-else>Update additional item</p>
     </template>
     <template v-slot:modalBody>
-      <div >
-       
+      <div v-if="!isUpdateGroupAdditionalItem">
+        <BaseLoadingUtils v-if="showLoadingAdditionalItem" />
+        <BaseAlertUtils v-show="showAlertAdditionalItem" :class="classErrorAdditionalItem" :type="titleAdditionalItem" :message="messageAdditionalItem" />
+
+        <form @submit.prevent="actionCreateNewItemAdditional" id="form">
+          <div class="grid md:grid-cols-2 md:gap-6">
+            <BaseInputUtils label="Name" name="name" type="text" />
+            <BaseInputUtils label="Description" name="description" type="text"  />
+          </div>
+      
+          <div class="grid md:grid-cols-2 md:gap-6">
+            <BaseInputUtils label="Price" name="price" type="text" />
+            <BaseInputUtils label="Code" name="code" type="text" />
+          </div>
+          <div class="grid md:grid-cols-2 md:gap-6">
+            <BaseSelectUtils 
+              :name="'additional_id'" 
+              :labelSelect="'Select an group additional'" 
+              :data="additionals" 
+            />
+            <BaseSelectUtils 
+              :name="'status'" 
+              :labelSelect="'Status'" 
+              :data="[{'id':0,'name': 'Disable'}, {'id':1, 'name':'Enable'}]" 
+            />
+          </div>
+          <BaseButtonUtilsVue type="submit" class="w-full justify-center mt-6">Create item additional</BaseButtonUtilsVue> 
+        </form>
+      </div>
+      <div v-else>
+        <BaseLoadingUtils v-if="showLoadingAdditionalItem" />
+        <BaseAlertUtils v-show="showAlertAdditionalItem" :class="classErrorAdditionalItem" :type="titleAdditionalItem" :message="messageAdditionalItem" />
+        <form @submit.prevent="actionUpdateItemAdditional" id="form">
+          <div class="grid md:grid-cols-2 md:gap-6">
+            <BaseInputUtils label="Name" name="name" type="text" :value="item[0].name"/>
+            <BaseInputUtils label="Description" name="description" type="text"  :value="item[0].description"/>
+          </div>
+      
+          <div class="grid md:grid-cols-2 md:gap-6">
+            <BaseInputUtils label="Price" name="price" type="text" :value="item[0].price" />
+            <BaseInputUtils label="Code" name="code" type="text" :value="item[0].code" />
+          </div>
+          <div class="grid md:grid-cols-2 md:gap-6">
+            <BaseSelectUtils 
+              :name="'additional_id'" 
+              :labelSelect="'Select an group additional'" 
+              :data="additionals" 
+              :selected="item[0].additional_id"
+            />
+            <BaseSelectUtils 
+              :name="'status'" 
+              :labelSelect="'Status'" 
+              :data="[{'id':0,'name': 'Disable'}, {'id':1, 'name':'Enable'}]" 
+              :selected="item[0].status"
+            />
+            
+          </div>
+          <BaseInputUtils label="" name="id" type="hidden" :value="item[0].id" />
+          <BaseButtonUtilsVue type="submit" class="w-full justify-center mt-6">Update item additional</BaseButtonUtilsVue> 
+        </form>
       </div>
     </template>
   </Modal>
