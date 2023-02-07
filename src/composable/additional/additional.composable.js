@@ -4,6 +4,7 @@ import ErrorService from "@/services/error/error.service"
 import AdditionalService from "@/services/additional/additional.service"
 import AdditionalItemService from "@/services/additional/additionalItem/additionalItem.service"
 import ApplyDataTableService from "@/services/utils/apply-dataTable.service"
+import { RETURN } from "@blackbp/vue-smooth-scrollbar"
 export default () => {
 
     const store = useStore()
@@ -34,6 +35,7 @@ export default () => {
     const actionShowModalItemAdditional = ()=>{
         showModalAdditionalItem.value = true
         isUpdateGroupAdditionalItem.value = false
+        showAlert.value = false
     }
     
     const closedModalAdditionalItem = ()=>{
@@ -193,7 +195,52 @@ export default () => {
             })
         }
     }
+    const actionCreateNewItemAdditional = ()=>{
+        
+        
 
+        showLoading.value = true
+        const form = document.getElementById('form')
+        const data = new FormData(form)
+        
+        AdditionalItemService.create(data).then((response) =>{
+            
+            const index = additionals.value.findIndex(add => add.id == response.data.data.additional_id);
+            
+            showAlert.value = true
+            title.value = ''
+            message.value = response.data.message
+            classError.value = 'success'
+            additionals.value = additionals.value[index].items.push(response.data.data)
+
+        }).catch((error) =>{
+
+           ErrorService(error)
+            
+        }).finally(() => showLoading.value = false)
+    }
+    const actionUpdateItemAdditional = ()=>{
+        showLoading.value = true
+        const form = document.getElementById('form')
+        const data = new FormData(form)
+        
+        AdditionalItemService.update(data).then((response) =>{
+            
+            const index = additionals.value.findIndex(add => add.id == response.data.data[0].additional_id);
+            const index_item = additionals.value[index].items.findIndex(it => it.id == response.data.data[0].id);
+            
+            showAlert.value = true
+            title.value = ''
+            message.value = response.data.message
+            classError.value = 'success'
+            additionals.value = additionals.value[index].items[index_item] = response.data.data[0]
+
+        }).catch((error) =>{
+
+           ErrorService(error)
+            
+        }).finally(() => showLoading.value = false)
+    }
     const deleteAdditionalItem = (id,groupId) =>{
         const group = additionals.value.filter(gp => gp.id == groupId)
         item.value= group[0].items.filter(it => it.id == id)
@@ -216,17 +263,26 @@ export default () => {
         item.value= group[0].items.filter(it => it.id == id)
         
     }
+    
     // mounted subtable
     $(document).ready(function () {
         function format(d) {
             let row = ''
             for(let i in d.items){
+
+                var color = d.items[i].status ? 'green': 'red'
+                var text = d.items[i].status ? 'Enable': 'Disabled'
+                var element = `<span class="text-sm font-semibold inline-flex items-center bg-${color}-100 text-${color}-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-${color}-900 dark:text-${color}-300">
+                                <span class="w-2 h-2 mr-1 bg-${color}-600 rounded-full"></span>
+                                     ${text}
+                                </span>`
                 row += `
                     <tr>
                         <td>${d.items[i].name}</td>
-                        <td class="text-center">${d.items[i].description}</td>
+                        <td class="text-center">${d.items[i].description ?? 'NÃO INFORMADA'}</td>
                         <td class="text-center">${d.items[i].price}</td>
-                        <td class="text-center">${d.items[i].code}</td>
+                        <td class="text-center">${d.items[i].code ?? 'NÃO DEFINIDO'}</td>
+                        <td class="text-center">${element}</td>
                         <td class="text-center">
                         <button data-id="${d.items[i].id}" data-group-id="${d.id}" class="btn-update-additional-item text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -252,6 +308,7 @@ export default () => {
                         <th class="text-center">DESCRIPTION</th>
                         <th class="text-center">PRICE</th>
                         <th class="text-center">CODE</th>
+                        <th class="text-center">STATUS</th>
                         <th class="text-center">ACTIONS</th>
                     </tr>
                 </thead>
@@ -307,5 +364,7 @@ export default () => {
         actionUpdateGroupAdditional,
         isUpdateGroupAdditionalItem,
         item,
+        actionCreateNewItemAdditional,
+        actionUpdateItemAdditional
     }
 }
