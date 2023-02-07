@@ -1,6 +1,4 @@
 <script setup>
-import AdditionalComposable from '@/composable/additional/additional.composable';
-import AdditionalIemComposable from '@/composable/additional/additionalItem/additionalItem.composable'
 import BaseAlertUtils from '@/components/utils/BaseAlertUtils.vue';
 import BaseInputUtils from '@/components/utils/BaseInputUtils.vue';
 import BaseLoadingUtils from '@/components/utils/BaseLoadingUtils.vue';
@@ -8,6 +6,7 @@ import BaseButtonUtilsVue from '@/components/utils/BaseButtonUtils.vue';
 import BaseSelectUtils from "@/components/utils/BaseSelectUtils.vue"
 import Modal from '@/components/utils/BaseModalUtils.vue';
 import BaseDataTableUtils from '@/components/utils/BaseDataTableUtils.vue';
+import AdditionalComposable from '@/composable/additional/additional.composable';
 const {
     actionShowModalGroupAdditional,
     showModalGroupAdditional,
@@ -29,16 +28,9 @@ const {
     item,
     showModalAdditionalItem,
     actionShowModalItemAdditional,
-  } = AdditionalComposable();
-const {
-   showAlert:showAlertAdditionalItem,
-   showLoading:showLoadingAdditionalItem,
-   title:titleAdditionalItem,
-   message:messageAdditionalItem,
-   classError:classErrorAdditionalItem,
-   actionCreateNewItemAdditional,
-   actionUpdateItemAdditional
-  } = AdditionalIemComposable();
+    actionUpdateItemAdditional,
+    actionCreateNewItemAdditional,
+  } = AdditionalComposable()
 </script>
 
 <template>
@@ -122,9 +114,10 @@ const {
       <p v-else>Update additional item</p>
     </template>
     <template v-slot:modalBody>
+      <BaseLoadingUtils v-if="showLoading" />
+        <BaseAlertUtils v-show="showAlert" :class="classError" :type="title" :message="message" />
       <div v-if="!isUpdateGroupAdditionalItem">
-        <BaseLoadingUtils v-if="showLoadingAdditionalItem" />
-        <BaseAlertUtils v-show="showAlertAdditionalItem" :class="classErrorAdditionalItem" :type="titleAdditionalItem" :message="messageAdditionalItem" />
+        
 
         <form @submit.prevent="actionCreateNewItemAdditional" id="form">
           <div class="grid md:grid-cols-2 md:gap-6">
@@ -152,8 +145,6 @@ const {
         </form>
       </div>
       <div v-else>
-        <BaseLoadingUtils v-if="showLoadingAdditionalItem" />
-        <BaseAlertUtils v-show="showAlertAdditionalItem" :class="classErrorAdditionalItem" :type="titleAdditionalItem" :message="messageAdditionalItem" />
         <form @submit.prevent="actionUpdateItemAdditional" id="form">
           <div class="grid md:grid-cols-2 md:gap-6">
             <BaseInputUtils label="Name" name="name" type="text" :value="item[0].name"/>
