@@ -7,6 +7,8 @@ import BaseSelectUtils from "@/components/utils/BaseSelectUtils.vue"
 import Modal from '@/components/utils/BaseModalUtils.vue';
 import BaseDataTableUtils from '@/components/utils/BaseDataTableUtils.vue';
 import AdditionalComposable from '@/composable/additional/additional.composable';
+
+import { VMoney } from 'v-money';
 const {
     actionShowModalGroupAdditional,
     showModalGroupAdditional,
@@ -31,9 +33,23 @@ const {
     actionUpdateItemAdditional,
     actionCreateNewItemAdditional,
   } = AdditionalComposable()
+  const settingFormatCurrency =  {
+        decimal: ",",
+        thousands: ".",
+        prefix: "R$ ",
+        suffix: "",
+        precision: 2,
+        masked: false /* doesn't work with directive */,
+    }
+  const vMoney3 = {
+    created() {
+      money: VMoney
+    },
+  }
 </script>
 
 <template>
+  
   <div class="ml-5 mt-5 w-full">
     <h1 class="text-2xl text-gray-900 dark:text-gray-200 font-medium">
       Additional
@@ -126,7 +142,7 @@ const {
           </div>
       
           <div class="grid md:grid-cols-2 md:gap-6">
-            <BaseInputUtils label="Price" name="price" type="text" />
+            <BaseInputUtils label="Price" name="price" type="text"  v-money="settingFormatCurrency"/>
             <BaseInputUtils label="Code" name="code" type="text" />
           </div>
           <div class="grid md:grid-cols-2 md:gap-6">
@@ -152,7 +168,7 @@ const {
           </div>
       
           <div class="grid md:grid-cols-2 md:gap-6">
-            <BaseInputUtils label="Price" name="price" type="text" :value="item[0].price" />
+            <BaseInputUtils label="Price" name="price" type="text" :value="item[0].price" v-money="settingFormatCurrency" />
             <BaseInputUtils label="Code" name="code" type="text" :value="item[0].code" />
           </div>
           <div class="grid md:grid-cols-2 md:gap-6">

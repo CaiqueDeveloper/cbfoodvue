@@ -4,7 +4,7 @@ import ErrorService from "@/services/error/error.service"
 import AdditionalService from "@/services/additional/additional.service"
 import AdditionalItemService from "@/services/additional/additionalItem/additionalItem.service"
 import ApplyDataTableService from "@/services/utils/apply-dataTable.service"
-import { RETURN } from "@blackbp/vue-smooth-scrollbar"
+import {formatMoney} from '@/services/utils/format-generate.service'
 export default () => {
 
     const store = useStore()
@@ -280,7 +280,7 @@ export default () => {
                     <tr>
                         <td>${d.items[i].name}</td>
                         <td class="text-center">${d.items[i].description ?? 'NÃO INFORMADA'}</td>
-                        <td class="text-center">${d.items[i].price}</td>
+                        <td class="text-center">${formatMoney(d.items[i].price)}</td>
                         <td class="text-center">${d.items[i].code ?? 'NÃO DEFINIDO'}</td>
                         <td class="text-center">${element}</td>
                         <td class="text-center">
