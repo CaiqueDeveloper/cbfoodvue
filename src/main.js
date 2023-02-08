@@ -13,7 +13,6 @@ import "./assets/dependencies/css/animate.css";
 import "./assets/dependencies/css/windzo.css";
 import AuthLayout from '@/components/layouts/auth/AuthLayout.vue';
 import DashboardLayout from '@/components/layouts/dashboard/DashboardLayout.vue';
-
 window.$ = require('jquery');
 var dt = require('datatables.net');
 window.$.DataTable = dt;
